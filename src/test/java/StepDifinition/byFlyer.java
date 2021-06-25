@@ -57,9 +57,9 @@ public class byFlyer {
         Assert.assertEquals(expectedErrorMessage,actualErrorMessage,"Error message is NOT as expected");
      }
 
-     @And("I enter data in the clicked Price-QTY box")
-     public void enterDataInBox(){
-         ytf.enterDataInLinkedQTYBox();
+     @And("I enter in the clicked Price-QTY related to'(.+)'box '(.+)'")
+     public void enterDataInBox(String item, String quantity){
+         ytf.enterDataInLinkedQTYBox(item,quantity);
      }
 
      @And("I click on other Price-QTY box")
@@ -79,14 +79,13 @@ public class byFlyer {
 
      @Then("I do NOT see any jumper")
     public void verifyIDoNotSeeAnyJumper() {
-         boolean isErrorMsgDisplayed = false;
+         boolean isErrorMsgDisplayed = true;
          try {
              ytf.findJumpers();
          } catch (NoSuchElementException e) {
-             isErrorMsgDisplayed = true;
+             isErrorMsgDisplayed = false;
          } catch (TimeoutException e) {
-             e.printStackTrace();
-             isErrorMsgDisplayed = true;
+             isErrorMsgDisplayed = false;
          }
          Assert.assertFalse(isErrorMsgDisplayed,"Unexpected error appears");
      }

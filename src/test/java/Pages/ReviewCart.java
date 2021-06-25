@@ -1,6 +1,9 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 
 import java.util.HashMap;
 
@@ -11,6 +14,9 @@ public class ReviewCart {
     By totalPrice = By.xpath("//li[contains(@class,'sfoSubTotalPrice')]");
     By totalQuantity = By.xpath("//span[contains(@class,'sfoSubTotalQty')]");
     By removeConfirmationButton_Yes = By.xpath("//button[contains(@class,'removeYes')]");
+    By proceedToCheckOut = By.xpath("//button[contains(text(),'Proceed to Checkout')]");
+    By proceedToCheckOut_2 = By.xpath("(//button[@class='button-text'])[2]");
+
 
 
     public double getHarryTotalPrice() {
@@ -50,6 +56,16 @@ public class ReviewCart {
         cm.clickThis(button_X);
         cm.clickThis(removeConfirmationButton_Yes);
         return priceAndQuantity;
+    }
+
+    public void clickProceedToCheckOut_1() {
+        cm.scrollToElement(cm.getElement(proceedToCheckOut));
+        cm.clickThis(proceedToCheckOut);
+        }
+
+    public void clickProceedToCheckOut_2() {
+        cm.scrollToElement(cm.getElement(proceedToCheckOut_2));
+        cm.clickThis(proceedToCheckOut_2);
     }
 
 

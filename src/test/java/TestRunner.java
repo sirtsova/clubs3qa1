@@ -6,9 +6,9 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources/features/"},
 
-        glue = {"DriverWrapper", "StepDefinition","Pages"},
+        glue = {"DriverWrapper", "StepDefinition", "Pages"},
 
-        tags = {"@smoke"}
+        tags = {"@regression"}
 
 )
 public class TestRunner {

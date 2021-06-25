@@ -71,7 +71,8 @@ public class HomePageLoggedInUser {
     public void clickOnEnterOrdersDropDown() {cm.moveMouseOverElement(enterOrdersDropDown);}
     By studentFlyerOrders = By.xpath("(//li[@id='student-flyer-orders']//a)[2]");
     public void selectStudentFlyerOrders() {cm.clickActionClass(studentFlyerOrders);}
-    By yourTeacherOrder = By.xpath("(//li[@id='your-teacher-order']//a)[2]");
+    By yourTeacherOrder = By.linkText("Your Teacher Order");
+            //xpath("(//li[@id='your-teacher-order']//a)[2]");
     public void selectYourTeacherOrder() {cm.clickActionClass(yourTeacherOrder);}
 
 

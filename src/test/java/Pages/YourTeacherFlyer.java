@@ -15,8 +15,9 @@ public class YourTeacherFlyer {
     By jumperHeader = By.xpath("//div[@class='info-modal-hd']");
     By jumperMessage = By.xpath("//div[@class='info-modal-content']");
     By exclamationPoint = By.xpath("//i[@class='icon-exclamation']");
-    By inputItem_8S8 = By.xpath("//input[@data-itemid='8S8']");
     By closeJumper_X = By.xpath("//i[contains(@class,'info-modal-close')]");
+    By inputItem_3S8 = By.xpath("//input[@data-itemid='3S8']");
+
 
     public int getInput_X() {
        int inputX =  cm.getXCoordinate(inputItem_9S8);
@@ -55,15 +56,16 @@ public class YourTeacherFlyer {
         return errorMessage;
     }
 
-    public void enterDataInLinkedQTYBox() {
-        cm.clickActionClass(inputItem_9S8);
-        cm.type(inputItem_9S8,"3");
+    public void enterDataInLinkedQTYBox(String item, String quantity) {
+        By inputItem = By.xpath("//input[@data-itemid='"+item+"']");
+        cm.clickActionClass(inputItem);
+        cm.type(inputItem,quantity);
     }
 
     public void closeJumper() {cm.clickThis(closeJumper_X);}
 
     public void clickInput_2() {
-         cm.clickActionClass(inputItem_8S8);
+         cm.clickActionClass(inputItem_3S8);
     }
 
     public void findJumpers() {
@@ -71,6 +73,8 @@ public class YourTeacherFlyer {
             cm.getElement(jumper).getText();
             cm.getElement(jumper_Unidentified).getText();
     }
+
+
 
 
 }
