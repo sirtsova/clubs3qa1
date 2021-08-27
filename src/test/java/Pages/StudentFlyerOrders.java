@@ -1,6 +1,8 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 
 public class StudentFlyerOrders {
     Commands cm = new Commands();
@@ -8,6 +10,7 @@ public class StudentFlyerOrders {
     By inputItemNumber = By.id("item-number");
     By buttonAdd = By.id("btn-add");
     By reviewCartButton = By.className("secondary");
+    By errorMessage = By.id("error-message-tooltip");
 
    public void addItems(String name, String number, String quantity) {
        int num = Integer.parseInt(quantity);
@@ -27,17 +30,31 @@ public class StudentFlyerOrders {
 
     public void clickReviewCart() {
        cm.scrollToElement(cm.getElement(reviewCartButton));
-       cm.clickThis(reviewCartButton);}
+       cm.clickThis(reviewCartButton);
+   }
 
-   /* public void enterItemNumber(String number) {cm.type(inputItemNumber,number);}
-   public void clickButtonAdd() {cm.clickThis(buttonAdd);}
-   public void changeQuantityForStudentWithItemNumber(String student, String itemNumber, String quantity) {
-        By quantityNumber = By.xpath("//td[contains(text(),'"+student+"')]/..//a[contains(text(),'"+itemNumber+"')]/../following-sibling::td[@class=' item-qty']//input[@type='text']");
-        cm.scrollToElement(cm.getElement(quantityNumber));
-        cm.type(quantityNumber,quantity);
-    }
+   public boolean isErrorMessageAppearsForWrongItemNumber() {
+       boolean isDisplayed = true;
+       try {
+           isDisplayed = cm.isElementDisplayed(errorMessage);
+       } catch (NoSuchElementException e) {
+           e.printStackTrace();
+           isDisplayed = false;
+       } catch (TimeoutException to) {
+           isDisplayed = false;
+       }
 
-    */
+       return isDisplayed;
+   }
+
+   public String getTextFromErrorMessage() {
+       String errorMessageText = null;
+       try {
+           errorMessageText = cm.getTextWeb(errorMessage);
+       } catch (NoSuchElementException e) {
+          } catch (TimeoutException e) { }
+       return errorMessageText;
+   }
 
 
 }

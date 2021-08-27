@@ -48,7 +48,7 @@ public class cartPage {
     }
 
     @And("I click on Review Cart button")
-    public void clickOnReviewCart () {
+    public void clickOnReviewCartAndGrabDetails () {
         fo.clickReviewCart();
         try {
             Thread.sleep(3000);
@@ -60,6 +60,13 @@ public class cartPage {
         totalQuantityBefore = cart.getTotalQuantity();
         totalPriceBefore = cart.getTotalPrice();
     }
+
+    /*@And("I click on Review Cart button")
+    public void clickOnReviewCart () {
+        fo.clickReviewCart();
+        }
+
+     */
 
     @And("I click on 'X' button corresponding to '(.+)' item for '(.+)' and click 'Yes' to confirm")
     public void deleteItem (String itemNumber, String studentName) {
@@ -89,7 +96,6 @@ public class cartPage {
         } catch(NoSuchElementException e) {
             isDeleted = true;
         } catch (TimeoutException ea) {
-            ea.printStackTrace();
             isDeleted = true;
         }
         Assert.assertTrue(isDeleted,"Item HAS NOT been deleted");
@@ -114,6 +120,26 @@ public class cartPage {
         Assert.assertEquals(expectedHarryQuantity,actualHarryQuantity,"Harry's quantity is not as expected");
         Assert.assertEquals(expectedTotalPrice,actualTotalPrice,"Total price is not as expected");
         Assert.assertEquals(expectedTotalQuantity,actualTotalQuantity,"Total quantity is not as expected");
+    }
+
+    @And("I click 'proceed to checkout' 1st button")
+    public void clickProceedToCheckOutButton() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        cart.clickProceedToCheckOut_1();
+    }
+
+    @And("I click 'proceed to checkout' 2nd button")
+    public void clickProceedToCheckOutButton_2() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        cart.clickProceedToCheckOut_2();
     }
 
 
